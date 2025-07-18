@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+jinja2
+sqlalchemy
+textblob
+aiofiles
+python-multipart
+passlib[bcrypt]
+python-dotenv

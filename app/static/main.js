@@ -1,5 +1,6 @@
 const editor = document.getElementById("editor");
-const socket = new WebSocket(`ws://${location.host}/ws/editor`);
+const socketProtocol = location.protocol === "https:" ? "wss:" : "ws:";
+const socket = new WebSocket(`${socketProtocol}//${location.host}/ws/editor`);
 const suggestionBox = document.getElementById("suggestion");
 let skipBroadcast = false;
 
@@ -13,8 +14,6 @@ editor.addEventListener("input", () => {
     socket.send(editor.value);
   }
   skipBroadcast = false;
-
-  // 🔥 Trigger suggestion on every keystroke
   getSuggestion();
 });
 
@@ -26,12 +25,17 @@ function getSuggestion() {
     method: "POST",
     body: formData
   })
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return res.json();
+  })
   .then(data => {
-    suggestionBox.innerText = data.suggestion;
+    suggestionBox.innerText = data.suggestion || "No suggestion available.";
   })
   .catch(err => {
-    suggestionBox.innerText = "Error getting suggestion.";
-    console.error(err);
+    suggestionBox.innerText = "⚠️ Unable to get suggestion.";
+    console.error("Suggestion error:", err);
   });
 }

@@ -13,6 +13,9 @@ editor.addEventListener("input", () => {
     socket.send(editor.value);
   }
   skipBroadcast = false;
+
+  // 🔥 Trigger suggestion on every keystroke
+  getSuggestion();
 });
 
 function getSuggestion() {

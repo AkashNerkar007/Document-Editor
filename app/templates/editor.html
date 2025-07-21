@@ -1,23 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Live Editor</title>
+  <meta charset="UTF-8">
+  <title>Real-time Document Editor</title>
   <script src="/static/main.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
-    textarea {
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .editor-container {
+      margin-top: 20px;
       width: 90%;
-      height: 400px;
+      max-width: 1000px;
+    }
+
+    #editor {
+      width: 100%;
+      height: 300px;
       font-size: 16px;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      resize: vertical;
+    }
+
+    .suggestion-box {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eaf6ff;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      color: #333;
+      font-size: 15px;
+    }
+
+    .suggestion-box strong {
+      color: #007bff;
     }
   </style>
 </head>
 <body>
-  <textarea id="editor" placeholder="Start typing..."></textarea>
-<br>
 
-<p><strong>Suggestion:</strong> <span id="suggestion"></span></p>
+  <h1>Live Collaborative Document Editor</h1>
 
+  <div class="editor-container">
+    <textarea id="editor" placeholder="Start typing here..."></textarea>
 
-  
+    <div class="suggestion-box">
+      <strong>Suggestion:</strong> <span id="suggestion">Start typing to get suggestions...</span>
+    </div>
+  </div>
+
 </body>
 </html>

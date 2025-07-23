@@ -1,3 +1,7 @@
+🚀 Live Application: The project is successfully deployed and accessible at the following link:
+
+👉 https://document-editor-qdup.onrender.com/editor
+
 # ✨ Real-Time Collaborative Text Editor with AI Suggestions
 
 A simple FastAPI-based real-time collaborative text editor that supports:
